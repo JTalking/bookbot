@@ -8,10 +8,20 @@ from stats import character_count
 from stats import sort_dict
 
 def main():
-    path = "./books/frankenstein.txt"
+    path = "books/frankenstein.txt"
     text = get_book_text(path)
     num_words = get_num_words(text)
-    print (f"{num_words} words found in the document")
-    print (sort_dict(character_count(text)))
+    char_count = character_count(text)
+    sorted_dict = sort_dict(char_count)
+    print ("============ BOOKBOT ============")
+    print (f"Analyzing book found at {path}...")
+    print ("----------- Word Count ----------")
+    print (f"Found {num_words} total words")
+    print ("--------- Character Count -------")
+    for dictionary in sorted_dict:
+        if not dictionary["char"].isalpha():
+            continue
+        print (f"{dictionary['char']}: {dictionary['num']}")
+    print ("============= END ===============")
 
 main()
